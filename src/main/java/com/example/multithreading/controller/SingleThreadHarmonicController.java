@@ -1,8 +1,11 @@
 package com.example.multithreading.controller;
 
-import com.example.multithreading.model.Harmonic;
+import com.example.multithreading.dto.HarmonicResponse;
+import com.example.multithreading.dto.HarmonicSingleRequest;
 import com.example.multithreading.service.SingleThreadHarmonicService;
 import org.springframework.web.bind.annotation.*;
+
+import java.math.BigDecimal;
 
 @RestController
 @RequestMapping("/single-thread-harmonic")
@@ -15,10 +18,9 @@ public class SingleThreadHarmonicController {
     }
 
     @PostMapping
-    public Harmonic calculateSingleThreadHarmonic(@RequestBody Harmonic harmonic) {
-        harmonic.setThreads(1);
-        harmonic.setResult(harmonicService.calculate(harmonic.getTerms(), harmonic.getScale()));
-        return harmonic;
+    public HarmonicResponse calculateSingleThreadHarmonic(@RequestBody HarmonicSingleRequest harmonic) {
+        BigDecimal result = harmonicService.calculate(harmonic.getTerms(), harmonic.getScale());
+        return new HarmonicResponse(result);
     }
 
 }
