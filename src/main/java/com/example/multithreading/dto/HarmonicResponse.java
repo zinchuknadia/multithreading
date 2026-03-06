@@ -1,12 +1,18 @@
 package com.example.multithreading.dto;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Setter;
 
 import java.math.BigDecimal;
 
 @Data
-@AllArgsConstructor
 public class HarmonicResponse {
     private BigDecimal result;
+    @Setter
+    private long executionTimeMs;
+
+    public HarmonicResponse(BigDecimal result) {
+        this.result = result;
+    }
+
 }

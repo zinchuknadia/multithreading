@@ -1,5 +1,6 @@
 package com.example.multithreading.service;
 
+import com.example.multithreading.dto.HarmonicResponse;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -8,7 +9,7 @@ import java.math.RoundingMode;
 @Service
 public class SingleThreadHarmonicService {
 
-    public BigDecimal calculate(int terms, int scale) {
+    public HarmonicResponse calculate(int terms, int scale) {
         BigDecimal sum = BigDecimal.ZERO;
 
         for (int i = 1; i <= terms; i++) {
@@ -20,6 +21,6 @@ public class SingleThreadHarmonicService {
             sum = sum.add(term);
         }
 
-        return sum.setScale(scale, RoundingMode.HALF_UP);
+        return new HarmonicResponse(sum.setScale(scale, RoundingMode.HALF_UP));
     }
 }

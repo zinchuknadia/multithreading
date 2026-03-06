@@ -1,5 +1,6 @@
 package com.example.multithreading.service;
 
+import com.example.multithreading.dto.HarmonicResponse;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -14,7 +15,7 @@ import java.util.concurrent.Future;
 @Service
 public class MultiThreadHarmonicService {
 
-    public BigDecimal calculate(int terms, int scale, int threads) throws ExecutionException, InterruptedException {
+    public HarmonicResponse calculate(int terms, int scale, int threads) throws ExecutionException, InterruptedException {
         ExecutorService executor = Executors.newFixedThreadPool(threads);
         List<Future<BigDecimal>> futures = new ArrayList<>();
 
@@ -45,6 +46,6 @@ public class MultiThreadHarmonicService {
 
         executor.shutdown();
 
-        return result.setScale(scale, RoundingMode.HALF_UP);
+        return new HarmonicResponse(result.setScale(scale, RoundingMode.HALF_UP));
     }
 }
