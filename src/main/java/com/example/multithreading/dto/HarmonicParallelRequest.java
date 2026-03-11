@@ -7,4 +7,5 @@ public class HarmonicParallelRequest {
     private int terms;
     private int scale;
     private int threads;
+    private String writeToFileName;
 }

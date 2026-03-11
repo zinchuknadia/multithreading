@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class PerformanceAspect {
 
-    @Around("execution(* com.example.multithreading.service.*.*(..))")
+    @Around("execution(* com.example.multithreading.service.*HarmonicService.*(..))")
     public Object around(ProceedingJoinPoint joinPoint) throws Throwable {
         long start = System.currentTimeMillis();
         Object result = joinPoint.proceed();
